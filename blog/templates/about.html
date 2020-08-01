@@ -1,17 +1,4 @@
-
 <!doctype html>
-{% load static %}
-{% load i18n %}
-{% load admin_list %}
-{% load admin_modify %}
-{% load admin_urls %}
-{% load cache %}
-{% load l10n %}
-{% load log %}
-{% load tz %}
-
-
-
 <html>
 
 <head>
@@ -19,15 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
-  <link rel="stylesheet" href="../static/css/base.css">
-  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-  <script type="text/javascript" src="../static/js/jquery.min.js"></script>
-  <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
   <div class="banner">
-    <img src="../static/images/banner.jpg">
+    <img src="images/banner.jpg">
     <div class="logo"> <h1>个人网页</h1>
     </div>
   </div>
@@ -42,8 +29,7 @@
           <span class="icon-bar"></span>
         </button>
       </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> <ul class="nav navbar-nav">
           <li class="active"><a href="index.html">网站首页</a></li>
           <li><a href="about.html">个人简介</a></li>
           <li><a href="interest.html">兴趣爱好</a></li>
@@ -55,25 +41,16 @@
   </nav>
   <div class="wrap">
     <div class="me clearfix">
-      <div class="me-title">cyn</div>
-      
-      <div class="me-info col-md-8">
-        <article>
-          {% for article in articles %}
-              <p><a href="./">{{article}}</a></p>
-          {% endfor %}
-
-
-
-        </article>
-
-
-        <p>  </p>
-        <p>  </p>
+      <div class="me-title">个人简介</div>
+      <div class="col-md-3">
+        <img src="images/me2.png">
       </div>
-      <div class="col-md-3 col-md-offset-1">
-          <img src="../static/images/cliff.png">
-        </div>
+      <div class="me-info col-md-8 col-md-offset-1">
+        <p>姓名：xxx</p>
+        <p>年龄：永远18岁</p>
+        <p>学校：xxxxxx</p>
+        <p>我是一个动静皆宜的人，习惯独处，但也热衷于参加各种群体活动。安静的时候，静若止水，冷敛而深沉。闲暇之余，喜欢写写文字，在字里行间梳理自己或喜或悲的情绪和情感;玩的时候，热情如火，率性而疯狂。</p>
+      </div>
     </div>
   </div>
 
