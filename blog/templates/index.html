@@ -1,14 +1,5 @@
-
 <!doctype html>
-{% load static %}
-{% load i18n %}
-{% load admin_list %}
-{% load admin_modify %}
-{% load admin_urls %}
-{% load cache %}
-{% load l10n %}
-{% load log %}
-{% load tz %}
+
 
 
 
@@ -18,17 +9,113 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>index</title>
   <link rel="stylesheet" href="../static/css/base.css">
   <link rel="stylesheet" href="../static/css/bootstrap.min.css">
   <script type="text/javascript" src="../static/js/jquery.min.js"></script>
   <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+
+
+  <style>
+
+  body{
+  background-color:#1e1e1e;
+  width:100%;
+  height:100%;
+  overflow-x:hidden;
+  color:#444;
+  }
+
+
+
+/* 创建两列 */
+/* Left column */
+.leftcolumn {
+  float: left ;
+  width: 50%;
+  position:relative;
+  left:160px;
+
+
+
+}
+
+/* 右侧栏 */
+.rightcolumn {
+  float: left;
+  width: 25%;
+
+
+  position:relative;
+  left:180px;
+  bottom:-60px;
+
+}
+
+/* 图像部分 */
+.fakeimg {
+  background-color: #aaa;
+  width: 50%;
+  padding: 20px;
+}
+
+/* 文章卡片效果 */
+.card {
+  background-color: white;
+  padding: 1px;
+  margin-top: 10px;
+  color:fff;
+}
+
+.readmore{
+float:right;
+}
+.title{
+color:red;
+padding-left:15px;
+}
+
+
+/*.sidebar { float: right; width: 28%; overflow: hidden; position: relative; }*/
+.about { background: #FFF url(../static/images/banner.png) no-repeat top center; overflow: hidden; margin-top:10px}
+.avatar { margin: 80px auto 20px; width: 100px }
+.avatar img { width: 100px; border-radius: 50% }
+.abname { color: #3f3f3f; font-weight: bold; font-size: 16px; margin-bottom: 10px; text-align: center }
+.abposition { color: #1abc9c; text-align: center }
+.abtext { padding: 20px 40px; color: #9a9a9a; line-height: 26px }
+
+
+.cloud { width: 100%; clear: both; overflow: hidden; background: #fff; margin-bottom: 20px;margin-top:10px }
+.cloud ul { padding: 20px; overflow: hidden; }
+.cloud ul a { line-height: 24px; height: 24px; display: block; background: #999; float: left; padding: 3px 11px; margin: 10px 10px 0 0; border-radius: 8px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; color: #FFF }
+.cloud ul a:nth-child(8n-7) { background: #8A9B0F }
+.cloud ul a:nth-child(8n-6) { background: #EB6841 }
+.cloud ul a:nth-child(8n-5) { background: #3FB8AF }
+.cloud ul a:nth-child(8n-4) { background: #FE4365 }
+.cloud ul a:nth-child(8n-3) { background: #FC9D9A }
+.cloud ul a:nth-child(8n-2) { background: #EDC951 }
+.cloud ul a:nth-child(8n-1) { background: #C8C8A9 }
+.cloud ul a:nth-child(8n) { background: #83AF9B }
+.cloud ul a:first-child { background: #036564 }
+.cloud ul a:last-child { background: #3299BB }
+.cloud ul a:hover { border-radius: 0; text-shadow: #000 1px 1px 1px }
+
+
+
+  </style>
+
+
+
+
+
+
+
 </head>
 
 <body>
   <div class="banner">
     <img src="../static/images/banner.jpg">
-    <div class="logo"> <h1>个人网页</h1>
+    <div class="logo"> <h1>my_blog</h1>
     </div>
   </div>
   <nav class="menav navbar" role="navigation">
@@ -44,15 +131,18 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">网站首页</a></li>
-          <li><a href="about.html">个人简介</a></li>
-          <li><a href="interest.html">兴趣爱好</a></li>
-          <li><a href="resume.html">旅行日记</a></li>
-          <li><a href="contact.html">给我留言</a></li>
+          <li class="active"><a href={% url 'index'%}>Home</a></li>
+          {% for ArticleType in types %}
+          <li><a href={%url 'types'%}?id={{ArticleType.id}}>{{ArticleType.name}}</a></li>
+          {% endfor %}
+          <li><a href={%url 'aboutme'%}>About me</a></li>
+
+          <li><a style="position:relative;left:550px;display:block" href={% url 'login'%}>login</a></li>
         </ul>
       </div>
     </div>
   </nav>
+  <!--
   <div class="wrap">
     <div class="me clearfix">
       <div class="me-title">cyn</div>
@@ -76,7 +166,117 @@
         </div>
     </div>
   </div>
+  -->
+
+<div class="row">
+
+  <div class="leftcolumn">
+
+    <h2 class="title">newset post</h2>
+    {%for Article in articles%}
+    <div class="card">
+      <h2 class="title">{{Article.title}}</h2>
+      <h5 class="abname">YuningChen</h5>
+      
+        <span class="blogpic"><img src="media/{{Article.cover}}"></span>
+      
+
+      <p>{{Article.desc}}
+      </p>
+      <div class="autor">
+        <span class="lm"><a href={% url 'types' %}?id={{ArticleType.id}} >{{ArticleType.name}}</a></span>
+        <span class="dtime">{{Article.addtime}}</span>
+        <span class="viewnum">views（<a href="/">0</a>）</span>
+        <span class="readmore"><a href={%url 'detail'%}?id={{Article.id}} target="_blank" >readmore</a></span></div>
+    </div>
+    {% endfor %}
+
+
+
+</div>
+<div class="rightcolumn">
+
+  <div class="about">
+      <div class="avatar"> <img src="../static/images/avatar.png" alt=""> </div>
+      <p class="abname">YuningChen | 陈宇宁</p>
+      <p class="abposition">Year3 student in UOB</p>
+      <div class="abtext"> A cs student from china,welcome to commuicate with me! </div>
+    </div>
+  <div class="cloud">
+      <h2 class="hometitle">tags</h2>
+      <ul>
+        <a href="#">UoB</a>
+        <a href="/">伯明翰</a>
+        <a href="/">Birmingham</a>
+        <a href="/">CS</a>
+        <a href="/">青春</a>
+        <a href="/">温暖</a>
+        <a href="/">阳光</a>
+        <a href="/">三星</a>
+        <a href="/">索尼</a>
+      </ul>
+    </div>
+  <!--
+  <div class="card">
+      <h2>关于我</h2>
+      <div class="fakeimg" style="height:100px;">图片</div>
+      <p>关于我的一些信息..</p>
+    </div>
+    <div class="card">
+      <h3>热门文章</h3>
+      <div class="fakeimg"><p>图片</p></div>
+      <div class="fakeimg"><p>图片</p></div>
+      <div class="fakeimg"><p>图片</p></div>
+    </div>
+
+
+
+
+
+
+
+  </div>
+
+<article>
+  <div class="blog">
+    <li>
+      <h3 class="blogtitle">
+        <a href="#">first blog</a>
+      </h3>
+      <div class="bloginfor">
+        <p>
+          123好好学习，天天向上
+          啦啦啦啦啦
+          啊实打实的
+          啊啊啊啊啊
+        </p>
+      </div>
+      <span class="dtime">2020/08/04</span>
+      <span class="readmore"><a href="#">readmore</a></span>
+    </li>
+
+      <li>
+      <h3 class="blogtitle">
+        <a href="#">first blog</a>
+      </h3>
+      <div class="bloginfor">
+        <p>
+          123好好学习，天天向上
+          啦啦啦啦啦
+          啊实打实的
+          啊啊啊啊啊
+        </p>
+      </div>
+      <span class="dtime">2020/08/04</span>
+      <span class="readmore"><a href="#">readmore</a></span>
+    </li>
+  </div>
+</article>
+-->
+
 
 </body>
+
+
 
 </html>

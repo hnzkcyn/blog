@@ -1,12 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 
-
-
-
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+     <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>index</title>
@@ -16,27 +12,23 @@
   <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
 
 
-  <style>
+    <style>
 
-  body{
+body{
   background-color:#1e1e1e;
   width:100%;
   height:100%;
   overflow-x:hidden;
-  color:#fff;
+  color:#444;
   }
-
-  </style>
-
-
-
-
+    </style>
 
 
 
 </head>
 <body>
-<div class="banner">
+<body>
+  <div class="banner">
     <img src="../static/images/banner.jpg">
     <div class="logo"> <h1>个人网页</h1>
     </div>
@@ -54,45 +46,57 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href={% url 'index'%}>home</a></li>
-          {% for ArticleType in types %}
-          <li><a href={%url 'types'%}?id={{ArticleType.id}}>{{ArticleType.name}}</a></li>
+          <li class="active"><a href={% url 'index' %}>home</a></li>
+             {% for ArticleType in types %}
+          <li><a href={% url 'types' %}?id={{ArticleType.id}}>{{ArticleType.name}}</a></li>
           {% endfor %}
-          <li><a href="contact.html">about</a></li>
+          <li><a href={% url 'aboutme'%}>about</a></li>
+
 
           <li><a style="position:relative;left:550px;display:block" href="#">login</a></li>
         </ul>
       </div>
     </div>
   </nav>
-<div class="ab_box">
-    <div class="leftbox">
-      <div class="newsview">
-
-        <h2>About my blog</h2>
-          &nbsp;
-          <p>email：hnzkcyn007@gmail.com&nbsp;</p>
-          <br />
-          <p>education: university of birmingham 2018-2021</p>
-          <br />
-          <p>major:  comouter science</p>
-          <br />
-          <p>modules: programing in java/c++ ; machine learning ; computer vision...</p>
 
 
+<div class="blogs">
+    <div class="mt20"></div>
+
+    {% for article in articles %}
+
+
+    <li> <span class="blogpic"><img src="media/{{article.cover}}"></span>
+      <h3 class="blogtitle"><a href={% url 'detail'%}?id={{article.id}} target="_blank">{{article.title}}</a></h3>
+      <div class="bloginfo">
+        <p>{{article.desc}}</p>
       </div>
-    </div>
-    <div class="rightbox">
-      <div class="about">
-      <div class="avatar"> <img src="../static/images/avatar.png" alt=""> </div>
-      <p class="abname">YuningChen | 陈宇宁</p>
-      <p class="abposition">Year3 student in UOB</p>
-      <div class="abtext"> A cs student from china,welcome to commuicate with me! </div>
-    </div>
+      <div class="autor">
+        <span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">{{ArticleType.name}}</a></span>
+        <span class="dtime">{{article.addtime}}</span>
+        <span class="viewnum">view（<a href="/">0</a>）</span>
+        <span class="readmore"><a href={% url 'detail'%}?id={{article.id}} target="_blank">read more</a></span></div>
+    </li>
+    {% endfor %}
 
-      </div>
-    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
 
 
 </body>
+
+
+
 </html>
