@@ -31,6 +31,8 @@ def show_detail(request):
 
     id = request.GET.get('id')
     article = Article.objects.get(pk=id)
+    article.clicknum = article.clicknum+1
+    article.save()
     types = ArticleType.objects.all()
 
 

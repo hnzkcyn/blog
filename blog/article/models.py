@@ -17,7 +17,7 @@ class Article(models.Model):
 
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=80, null=False)
-    desc = models.CharField(max_length=255, null=False)
+    desc = models.CharField(max_length=500, null=False)
     content = models.TextField()
     likes = models.IntegerField(default=0)
     clicknum = models.IntegerField(default=0)
@@ -33,7 +33,7 @@ class Article(models.Model):
 
 class Comments(models.Model):
     id = models.AutoField(primary_key=True)
-    nick_name = models.CharField(max_length=50)
+    nick_name = models.CharField(max_length=140)
     content = models.TextField()
     article = models.ForeignKey(to=Article,on_delete=models.CASCADE)
     addtime = models.DateTimeField(default=datetime.now)

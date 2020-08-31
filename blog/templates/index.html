@@ -172,7 +172,7 @@ padding-left:15px;
 
   <div class="leftcolumn">
 
-    <h2 class="title">newset post</h2>
+    <h2 class="title">Newest Post</h2>
     {%for Article in articles%}
     <div class="card">
       <h2 class="title">{{Article.title}}</h2>
@@ -186,7 +186,7 @@ padding-left:15px;
       <div class="autor">
         <span class="lm"><a href={% url 'types' %}?id={{ArticleType.id}} >{{ArticleType.name}}</a></span>
         <span class="dtime">{{Article.addtime}}</span>
-        <span class="viewnum">views（<a href="/">0</a>）</span>
+        <span class="viewnum">views（<a href="/">{{Article.clicknum}}</a>）</span>
         <span class="readmore"><a href={%url 'detail'%}?id={{Article.id}} target="_blank" >readmore</a></span></div>
     </div>
     {% endfor %}
@@ -203,17 +203,17 @@ padding-left:15px;
       <div class="abtext"> A cs student from china,welcome to commuicate with me! </div>
     </div>
   <div class="cloud">
-      <h2 class="hometitle">tags</h2>
+      <h2 class="hometitle">Tags</h2>
       <ul>
         <a href="#">UoB</a>
         <a href="/">伯明翰</a>
         <a href="/">Birmingham</a>
         <a href="/">CS</a>
-        <a href="/">青春</a>
-        <a href="/">温暖</a>
+        <a href="/">badminton</a>
+        <a href="/">machine learning</a>
         <a href="/">阳光</a>
-        <a href="/">三星</a>
-        <a href="/">索尼</a>
+        <a href="/">AI</a>
+        <a href="/">羽毛球</a>
       </ul>
     </div>
   <!--

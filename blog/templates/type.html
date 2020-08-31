@@ -5,7 +5,7 @@
      <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>index</title>
+  <title>Blog-list</title>
   <link rel="stylesheet" href="../static/css/base.css">
   <link rel="stylesheet" href="../static/css/bootstrap.min.css">
   <script type="text/javascript" src="../static/js/jquery.min.js"></script>
@@ -30,7 +30,7 @@ body{
 <body>
   <div class="banner">
     <img src="../static/images/banner.jpg">
-    <div class="logo"> <h1>个人网页</h1>
+    <div class="logo"> <h1>my_blog</h1>
     </div>
   </div>
   <nav class="menav navbar" role="navigation">
@@ -72,9 +72,9 @@ body{
         <p>{{article.desc}}</p>
       </div>
       <div class="autor">
-        <span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">{{ArticleType.name}}</a></span>
+        <span class="lm"><a href="/" title="CSS3|Html5" target="_blank" class="classname">{{articleType.name}}</a></span>
         <span class="dtime">{{article.addtime}}</span>
-        <span class="viewnum">view（<a href="/">0</a>）</span>
+        <span class="viewnum">view（<a href="/">{{article.clicknum}}</a>）</span>
         <span class="readmore"><a href={% url 'detail'%}?id={{article.id}} target="_blank">read more</a></span></div>
     </li>
     {% endfor %}
